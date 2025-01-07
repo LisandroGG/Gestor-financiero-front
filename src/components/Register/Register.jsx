@@ -21,8 +21,6 @@ const Register = () => {
             contraseñaUsuario: contraseñaUsuario,
         };
     
-        console.log("Datos a enviar:", userData);
-    
         await dispatch(registerUsuario(userData));
     };
 

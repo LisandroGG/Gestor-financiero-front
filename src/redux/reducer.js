@@ -11,6 +11,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
             }
 
+            case LOGIN_USUARIO:
+                return{
+                    ...state,
+                }
+
         default:
             return{
                 ...state,

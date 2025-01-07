@@ -23,3 +23,23 @@ export const registerUsuario = (userData) => {
         }
     };
 };
+
+export const loginUsuario = (loginData) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(`${LOCAL}/usuarios/login`, loginData, {
+                headers: {
+                    'Content-Type': 'application/json', // Especificamos que estamos enviando JSON
+                },
+            });
+            console.log(data)
+
+            return dispatch({
+                type: LOGIN_USUARIO,
+                payload: data,
+            });
+        } catch (error) {
+            alert(error.response?.data.message || error.message);
+        }
+    };
+};

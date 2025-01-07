@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-//importar la funcion loginUsuario
+import { loginUsuario } from "../../redux/actions";
 
 const Login = () =>{
     const [gmailUsuario, setGmail] = useState("");
@@ -14,16 +14,14 @@ const Login = () =>{
         if(!gmailUsuario || !contraseñaUsuario){
             return;
         }
-    }
-
-    const loginData = {
-        gmailUsuario: gmailUsuario,
-        contraseñaUsuario: contraseñaUsuario
-    }
+        const loginData = {
+            gmailUsuario: gmailUsuario.trim(),
+            contraseñaUsuario: contraseñaUsuario.trim(),
+        }
     
-    console.log("datos a enviar", loginData)
+        await dispatch(loginUsuario(loginData))
+    }
 
-    //await dispatch(loginUsuario(loginData))
 
     return(
         <div>
@@ -40,7 +38,7 @@ const Login = () =>{
                     value={contraseñaUsuario}
                     onChange={(e) => setContraseña(e.target.value)}
                 />
-                <buttoon type="submit">Iniciar sesion</buttoon>
+                <button type="submit">Iniciar sesion</button>
             </form>
 
         </div>
