@@ -1,10 +1,14 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginUsuario } from "../../redux/actions";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () =>{
     const [gmailUsuario, setGmail] = useState("");
     const [contraseñaUsuario, setContraseña] = useState("")
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch()
 
@@ -20,6 +24,7 @@ const Login = () =>{
         }
     
         await dispatch(loginUsuario(loginData))
+        navigate('/')
     }
 
 
