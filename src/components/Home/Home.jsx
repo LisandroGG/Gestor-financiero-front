@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { obtenerCategorias } from "../../redux/actions";
 
 import Categorias from "../Categorias/Categorias";
-import CrearCategoria from "../CrearCategoria/CrearCategoria";
+import CrearCategoria from "../Categorias/CrearCategoria";
 
 const Home = () => {
     const usuario = useSelector((state) => state.usuario);
@@ -17,7 +17,6 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Solo ejecutar si el idUsuario existe
         if (usuario?.idUsuario) {
             const fetchCategorias = async () => {
                 try {
