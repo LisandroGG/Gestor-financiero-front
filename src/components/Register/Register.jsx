@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { registerUsuario } from "../../redux/actions"; // Asegúrate de importar la acción correctamente
 
 const Register = () => {
@@ -7,6 +8,7 @@ const Register = () => {
     const [gmailUsuario, setGmail] = useState("");
     const [contraseñaUsuario, setContraseña] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +23,13 @@ const Register = () => {
             contraseñaUsuario: contraseñaUsuario,
         };
     
-        await dispatch(registerUsuario(userData));
+        const response = await dispatch(registerUsuario(userData));
+
+        if(response.success){
+            navigate('/login')
+        }else{
+            console.log('Error al registrar usuario')
+        }
     };
 
     return (
@@ -47,6 +55,7 @@ const Register = () => {
                 />
                 <button type="submit">Registrarse</button>
             </form>
+            <h1>Ya tienes cuenta? <a href="/login">Iniciar sesion</a></h1>
         </div>
     );
 };

@@ -23,10 +23,13 @@ export const registerUsuario = (userData) => {
             });
             console.log(data)
 
-            return dispatch({
+            dispatch({
                 type: REGISTER_USUARIO,
                 payload: data,
             });
+
+            return { success: true}
+            
         } catch (error) {
             alert(error.response?.data.message || error.message);
         }
@@ -98,7 +101,7 @@ export const validarSesion = () => {
                 },
             });
         } catch (error) {
-            console.error('Error al validar sesión:', error.message);
+            console.error('Usuario desautorizado', error.message);
         }
     };
 };

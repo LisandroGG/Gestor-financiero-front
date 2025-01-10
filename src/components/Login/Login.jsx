@@ -1,14 +1,12 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginUsuario } from "../../redux/actions";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Login = () =>{
     const [gmailUsuario, setGmail] = useState("");
     const [contraseñaUsuario, setContraseña] = useState("")
-
-    const navigate = useNavigate();
 
     const dispatch = useDispatch()
 
@@ -24,7 +22,6 @@ const Login = () =>{
         }
     
         await dispatch(loginUsuario(loginData))
-        navigate('/')
     }
 
 
@@ -46,6 +43,7 @@ const Login = () =>{
                 <button type="submit">Iniciar sesion</button>
             </form>
 
+            <h1>¿No tienes una cuenta?<a href="/register"> Registrarse</a></h1>
         </div>
     )
 }
