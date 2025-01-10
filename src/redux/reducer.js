@@ -1,12 +1,22 @@
-import { REGISTER_USUARIO, LOGIN_USUARIO, LOGOUT_USUARIO } from "./action-types";
+import { 
+        REGISTER_USUARIO,
+        LOGIN_USUARIO,
+        LOGOUT_USUARIO,
+        OBTENER_CATEGORIAS,
+        CREAR_CATEGORIA,
+        EDITAR_CATEGORIA,
+        ELIMINAR_CATEGORIA
+    } from './action-types'
 
 export const initialState = {
     usuario: null,
+    categorias: [],
 }
 
 function rootReducer(state = initialState, action) {
     console.log('Acción recibida:', action);
     switch(action.type) {
+        //USUARIO
         case REGISTER_USUARIO:
             return{
                 ...state,
@@ -27,7 +37,24 @@ function rootReducer(state = initialState, action) {
             return{
                 ...state,
                 usuario: null,
+                categorias: [],
             }
+
+        //CATEGORIAS
+
+        case OBTENER_CATEGORIAS:
+
+        return{
+            ...state,
+            categorias: action.payload
+        }
+
+        case CREAR_CATEGORIA:
+
+        return{
+            ...state,
+            categorias: [...state.categorias, action.payload]
+        }
 
         default:
             console.log('Estado antes de retornar:', state);
