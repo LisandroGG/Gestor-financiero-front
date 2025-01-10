@@ -5,7 +5,7 @@ import {
         LOGOUT_USUARIO,
         OBTENER_CATEGORIAS,
         CREAR_CATEGORIA,
-        EDITAR_CATEGORIA,
+        ACTUALIZAR_CATEGORIA,
         ELIMINAR_CATEGORIA 
     } from './action-types'
 
@@ -118,17 +118,18 @@ export const obtenerCategorias = (idUsuario) => {
             })
         } catch (error) {
             console.error("Error al obtener categorías:", error.message);
-            alert(error.message || "ERROR AL OBTENER CATEGORÍAS");
         }
     }
 }
 
 export const crearCategoria = (idUsuario, nuevaCategoria) => {
+    const nombreCategoriaNormalizado = nuevaCategoria.trim().toLowerCase();
+
     return async (dispatch) => {
         try {
             const { data } = await axios.post(`${LOCAL}/categorias/crear`, {
                 idUsuario,
-                nombreCategoria: nuevaCategoria,
+                nombreCategoria: nombreCategoriaNormalizado, // Asegúrate de que el nombre esté normalizado
             }, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
@@ -141,9 +142,52 @@ export const crearCategoria = (idUsuario, nuevaCategoria) => {
                 payload: data,
             });
         } catch (error) {
-            console.error('Error al crear categoría:', error.message);
-            alert(error.message || 'ERROR AL CREAR CATEGORÍA');
+            console.error('Error al crear categoría:', error.response?.data?.message || error.message);
+            alert(error.response?.data?.message || 'ERROR AL CREAR CATEGORÍA');
         }
     };
 };
+
+export const actualizarCategoria = (idUsuario, idCategoriaEditada, categoriaEditada) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.put(`${LOCAL}/categorias/actualizar/${idUsuario}/${idCategoriaEditada}`, {
+                nombreCategoria: categoriaEditada.trim(), // Asegúrate de que el nombre esté limpio
+            }, {
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true,
+            });
+
+            return dispatch({
+                type: ACTUALIZAR_CATEGORIA,
+                payload: {
+                    idCategoria: data.categoria.idCategoria,
+                    nombreCategoria: data.categoria.nombreCategoria
+                },
+            });
+        } catch (error) {
+            console.log('Error al actualizar categoria', error.response?.data?.message || error.message);
+            alert(error.response?.data?.message || 'ERROR AL ACTUALIZAR CATEGORIA');
+        }
+    };
+};
+
+export const eliminarCategoria = (idUsuario, idCategoria) => {
+
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`${LOCAL}/categorias/eliminar/${idUsuario}/${idCategoria}`, {
+                withCredentials: true,
+            });
+
+            return dispatch({
+                type: ELIMINAR_CATEGORIA,
+                payload: { idCategoria }
+            })
+        } catch (error) {
+            console.log('Error al eliminar categoria', error.message);
+            alert(error.message || 'ERROR AL ELIMINAR CATEGORIA')
+        }
+    }
+}
 
