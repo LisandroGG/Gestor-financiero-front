@@ -3,13 +3,17 @@ import { logoutUsuario } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { obtenerCategorias } from "../../redux/actions";
+import { obtenerGastos } from "../../redux/actions";
 
 import Categorias from "../Categorias/Categorias";
 import CrearCategoria from "../Categorias/CrearCategoria";
+import Gastos from "../Gastos/Gastos";
+import CrearGasto from "../Gastos/CrearGasto";
 
 const Home = () => {
     const usuario = useSelector((state) => state.usuario);
     const categorias = useSelector((state) => state.categorias);
+    const gastos = useSelector((state) => state.gastos);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,13 +28,24 @@ const Home = () => {
                 } catch (error) {
                     console.error('Error al obtener categorías:', error);
                 } finally {
-                    setLoading(false); // Finalizar carga cuando las categorías estén listadas o haya un error
+                    setLoading(false);
                 }
             };
+
+            const fetchGastos = async () => {
+                try {
+                    await dispatch(obtenerGastos(usuario.idUsuario));
+                } catch (error) {
+                    console.log('Error al obtener gastos', error)
+                }finally {
+                    setLoading(false)
+                }
+            }
             
             fetchCategorias();
+            fetchGastos()
         } else {
-            setLoading(false); // Si no hay usuario, finalizamos la carga
+            setLoading(false);
         }
     }, [usuario, dispatch]);
 
@@ -49,6 +64,8 @@ const Home = () => {
             <h1>Estas son tus categorías</h1>
             <Categorias categorias={categorias} />
             <CrearCategoria />
+            <Gastos gastos={gastos}/>
+            <CrearGasto />
             <button onClick={handleLogout} className="border-2 bg-rose-100">
                 Cerrar sesión
             </button>

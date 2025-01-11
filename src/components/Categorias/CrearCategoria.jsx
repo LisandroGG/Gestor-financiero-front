@@ -23,6 +23,7 @@ const CrearCategoria = () => {
 
     return(
         <div>
+            <h2>Crear categoria</h2>
             <input
                 type="text"
                 value={nombreCategoria}

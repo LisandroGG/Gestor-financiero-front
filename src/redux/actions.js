@@ -6,7 +6,11 @@ import {
         OBTENER_CATEGORIAS,
         CREAR_CATEGORIA,
         ACTUALIZAR_CATEGORIA,
-        ELIMINAR_CATEGORIA 
+        ELIMINAR_CATEGORIA,
+        OBTENER_GASTOS,
+        CREAR_GASTO,
+        ACTUALIZAR_GASTO,
+        ELIMINAR_GASTO
     } from './action-types'
 
 const LOCAL = import.meta.env.VITE_LOCAL;
@@ -168,6 +172,7 @@ export const actualizarCategoria = (idUsuario, idCategoriaEditada, categoriaEdit
                     nombreCategoria: data.categoria.nombreCategoria
                 },
             });
+            
         } catch (error) {
             console.log('Error al actualizar categoria', error.response?.data?.message || error.message);
             alert(error.response?.data?.message || 'ERROR AL ACTUALIZAR CATEGORIA');
@@ -193,4 +198,65 @@ export const eliminarCategoria = (idUsuario, idCategoria) => {
         }
     }
 }
+
+export const obtenerGastos = (idUsuario) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${LOCAL}/gastos/obtener/${idUsuario}`, {
+                withCredentials: true,
+            });
+
+            return dispatch({
+                type: OBTENER_GASTOS,
+                payload: data
+            })
+        } catch (error) {
+            console.log('Error al obtener gastos', error.message)
+        }
+    }
+}
+
+export const crearGasto = (gasto) => async (dispatch) => {
+    try {
+        const { data } = await axios.post(`${LOCAL}/gastos/crear`, gasto);
+        dispatch({
+            type: CREAR_GASTO,
+            payload: data.gasto,
+        });
+    } catch (error) {
+        console.error("Error al crear gasto:", error);
+    }
+};
+
+export const actualizarGasto = ({ idUsuario, idCategoria, idGasto, cantidadGasto }) => async (dispatch) => {
+    try {
+        const { data } = await axios.put(
+            `${LOCAL}/gastos/actualizar/${idUsuario}/idCategoria/${idCategoria}/idGasto/${idGasto}`,
+            { cantidadGasto }
+        );
+        dispatch({
+            type: ACTUALIZAR_GASTO,
+            payload: {
+                idGasto: data.gasto.idGasto,
+                idUsuario: data.gasto.idUsuario,
+                idCategoria: data.gasto.idCategoria,
+                cantidadGasto: data.gasto.cantidadGasto
+            },
+        });
+    } catch (error) {
+        console.error("Error al actualizar gasto:", error);
+    }
+};
+
+export const eliminarGasto = (idUsuario, idGasto) => async (dispatch) => {
+    try {
+        await axios.delete(`${LOCAL}/gastos/eliminar/${idUsuario}/${idGasto}`);
+        dispatch({
+            type: ELIMINAR_GASTO,
+            payload: idGasto, // Enviamos el ID del gasto eliminado
+        });
+    } catch (error) {
+        console.error("Error al eliminar gasto:", error);
+    }
+};
 

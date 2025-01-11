@@ -8,14 +8,11 @@ const Categorias = ({ categorias }) => {
     const dispatch = useDispatch();
 
     const usuario = useSelector((state) => state.usuario);
-
-    // Manejar la edición de la categoría
     const handleEditar = (idCategoria, nombreCategoria) => {
         setIdCategoriaEditada(idCategoria);
         setCategoriaEditada(nombreCategoria);
     };
 
-    // Guardar los cambios de la categoría editada
     const handleGuardar = () => {
         if (categoriaEditada.trim() !== '') {
             dispatch(actualizarCategoria(usuario.idUsuario, idCategoriaEditada, categoriaEditada));
@@ -26,7 +23,6 @@ const Categorias = ({ categorias }) => {
         }
     };
 
-    // Eliminar una categoría
     const handleEliminar = (idCategoria) => {
         if (window.confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
             dispatch(eliminarCategoria(usuario.idUsuario, idCategoria));
@@ -35,6 +31,7 @@ const Categorias = ({ categorias }) => {
 
     return (
         <div>
+            
             {categorias.length ? (
                 <ul>
                     {categorias.map((categoria) => (
@@ -48,17 +45,17 @@ const Categorias = ({ categorias }) => {
                             ) : (
                                 categoria.nombreCategoria
                             )}
-                            {/* Botón de editar */}
+
                             {idCategoriaEditada !== categoria.idCategoria && (
                                 <button onClick={() => handleEditar(categoria.idCategoria, categoria.nombreCategoria)}>
                                     Editar
                                 </button>
                             )}
-                            {/* Botón de guardar */}
+
                             {idCategoriaEditada === categoria.idCategoria && (
                                 <button onClick={handleGuardar}>Guardar</button>
                             )}
-                            {/* Botón de eliminar - solo visible cuando no está editando */}
+
                             {idCategoriaEditada !== categoria.idCategoria && (
                                 <button onClick={() => handleEliminar(categoria.idCategoria)}>Eliminar</button>
                             )}
