@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { crearGasto } from "../../redux/actions";
+import { crearGasto, obtenerGastos } from "../../redux/actions";
 
 const CrearGasto = () => {
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const CrearGasto = () => {
     const [montoGasto, setMontoGasto] = useState("");
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
 
-    const handleCrearGasto = (e) => {
+    const handleCrearGasto = async (e) => {
         e.preventDefault();
 
         if (!montoGasto.trim() || !categoriaSeleccionada) {
@@ -18,16 +18,22 @@ const CrearGasto = () => {
             return;
         }
 
-        dispatch(
-            crearGasto({
-                idUsuario: usuario.idUsuario,
-                idCategoria: categoriaSeleccionada,
-                cantidadGasto: montoGasto,
-            })
-        );
+        try {
+            await dispatch(
+                crearGasto({
+                    idUsuario: usuario.idUsuario,
+                    idCategoria: categoriaSeleccionada,
+                    cantidadGasto: montoGasto,
+                })
+            );
 
-        setMontoGasto("");
-        setCategoriaSeleccionada("");
+            await dispatch(obtenerGastos(usuario.idUsuario));
+
+            setMontoGasto("");
+            setCategoriaSeleccionada("");
+        } catch (error) {
+            console.error("Error al crear o obtener los gastos:", error);
+        }
     };
 
     return (

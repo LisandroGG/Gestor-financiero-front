@@ -22,28 +22,17 @@ const Home = () => {
 
     useEffect(() => {
         if (usuario?.idUsuario) {
-            const fetchCategorias = async () => {
-                try {
-                    await dispatch(obtenerCategorias(usuario.idUsuario));
-                } catch (error) {
-                    console.error('Error al obtener categorías:', error);
-                } finally {
+            const fetchCategorias = dispatch(obtenerCategorias(usuario.idUsuario));
+            const fetchGastos = dispatch(obtenerGastos(usuario.idUsuario));
+    
+            Promise.all([fetchCategorias, fetchGastos])
+                .then(() => {
                     setLoading(false);
-                }
-            };
-
-            const fetchGastos = async () => {
-                try {
-                    await dispatch(obtenerGastos(usuario.idUsuario));
-                } catch (error) {
-                    console.log('Error al obtener gastos', error)
-                }finally {
-                    setLoading(false)
-                }
-            }
-            
-            fetchCategorias();
-            fetchGastos()
+                })
+                .catch((error) => {
+                    console.error('Error al cargar datos:', error);
+                    setLoading(false);
+                });
         } else {
             setLoading(false);
         }

@@ -194,7 +194,8 @@ export const eliminarCategoria = (idUsuario, idCategoria) => {
             })
         } catch (error) {
             console.log('Error al eliminar categoria', error.message);
-            alert(error.message || 'ERROR AL ELIMINAR CATEGORIA')
+            //MENSAJE CON EL ERROR DEL BACKEND
+            return { message: error.response?.data?.message || 'ERROR AL ELIMINAR CATEGORIA' };
         }
     }
 }

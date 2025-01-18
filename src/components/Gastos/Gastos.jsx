@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actualizarGasto, eliminarGasto } from "../../redux/actions";
+import { actualizarGasto, eliminarGasto, obtenerGastos } from "../../redux/actions";
 
 const Gastos = ({ gastos }) => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Gastos = ({ gastos }) => {
         setCategoriaSeleccionada(gasto.idCategoria);
     };
 
-    const handleGuardarGasto = (e) => {
+    const handleGuardarGasto = async() => {
         e.preventDefault();
 
         if (!montoGasto || !categoriaSeleccionada) {
@@ -25,23 +25,32 @@ const Gastos = ({ gastos }) => {
             return;
         }
 
-        dispatch(
-            actualizarGasto({
-                idGasto: gastoEditado.idGasto,
-                idUsuario: usuario.idUsuario,
-                idCategoria: categoriaSeleccionada,
-                cantidadGasto: montoGasto,
-            })
-        );
+        try {
+            await dispatch(
+                actualizarGasto({
+                    idGasto: gastoEditado.idGasto,
+                    idUsuario: usuario.idUsuario,
+                    idCategoria: categoriaSeleccionada,
+                    cantidadGasto: montoGasto,
+                })
+            );
+            await dispatch(obtenerGastos(usuario.idUsuario));
+    
+            setGastoEditado(null);
+            setMontoGasto("");
+            setCategoriaSeleccionada("");
+            
+        } catch (error) {
+            console.error("Error al crear o obtener los gastos:", error);
+        }
 
-        setGastoEditado(null);
-        setMontoGasto("");
-        setCategoriaSeleccionada("");
+
     };
 
     const handleEliminarGasto = (idGasto) => {
         if (window.confirm("¿Estás seguro de eliminar este gasto?")) {
             dispatch(eliminarGasto(usuario.idUsuario, idGasto));
+            dispatch(obtenerGastos(usuario.idUsuario));
         }
     };
 
@@ -76,7 +85,7 @@ const Gastos = ({ gastos }) => {
                                 </>
                             ) : (
                                 <>
-                                    <span>{gasto.cantidadGasto} - {gasto.categoria?.nombreCategoria}</span>
+                                    <span>{gasto.cantidadGasto} - {gasto.categoria?.nombreCategoria || 'Categoria Eliminada'}</span>
                                     <button onClick={() => handleEditarGasto(gasto)}>Editar</button>
                                     <button onClick={() => handleEliminarGasto(gasto.idGasto)}>Eliminar</button>
                                 </>

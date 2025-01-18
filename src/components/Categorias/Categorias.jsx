@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actualizarCategoria, eliminarCategoria } from '../../redux/actions';
+import { actualizarCategoria, eliminarCategoria, obtenerGastos } from '../../redux/actions';
 
 const Categorias = ({ categorias }) => {
     const [categoriaEditada, setCategoriaEditada] = useState('');
@@ -8,30 +8,52 @@ const Categorias = ({ categorias }) => {
     const dispatch = useDispatch();
 
     const usuario = useSelector((state) => state.usuario);
+    const [errorMessage, setErrorMessage] = useState("");
+
     const handleEditar = (idCategoria, nombreCategoria) => {
         setIdCategoriaEditada(idCategoria);
         setCategoriaEditada(nombreCategoria);
     };
 
-    const handleGuardar = () => {
+    const handleGuardar = async () => {
         if (categoriaEditada.trim() !== '') {
-            dispatch(actualizarCategoria(usuario.idUsuario, idCategoriaEditada, categoriaEditada));
-            setCategoriaEditada('');
-            setIdCategoriaEditada(null);
+            try {
+                await dispatch(actualizarCategoria(usuario.idUsuario, idCategoriaEditada, categoriaEditada));
+
+                await dispatch(obtenerGastos(usuario.idUsuario));
+
+                setCategoriaEditada('');
+                setIdCategoriaEditada(null);
+            } catch (error) {
+                console.error('Error al editar la categoría o actualizar los gastos:', error);
+            }
         } else {
             alert('El nombre de la categoría no puede estar vacío.');
         }
     };
 
-    const handleEliminar = (idCategoria) => {
+    const handleEliminar = async(idCategoria) => {
         if (window.confirm('¿Estás seguro de que deseas eliminar esta categoría?')) {
-            dispatch(eliminarCategoria(usuario.idUsuario, idCategoria));
+            try {
+                const response = await dispatch(eliminarCategoria(usuario.idUsuario, idCategoria));
+
+                if(response?.message){
+                    setErrorMessage(response.message)
+                    return
+                }
+
+                await dispatch(obtenerGastos(usuario.idUsuario));
+                setErrorMessage("");
+            } catch (error) {
+                console.log('Error al eliminar la categoria', error)
+                setErrorMessage('Hubo un problema al eliminar la categoria')
+            }
         }
     };
 
     return (
         <div>
-            
+            {errorMessage}
             {categorias.length ? (
                 <ul>
                     {categorias.map((categoria) => (
