@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginUsuario } from "../../redux/actions";
-import { Link } from "react-router-dom";
 
 
 const Login = () =>{
