@@ -43,6 +43,7 @@ const Login = () =>{
             </form>
 
             <h1>¿No tienes una cuenta?<a href="/register"> Registrarse</a></h1>
+            <h1><a href="/forgotPassword">Olvide mi contraseña</a></h1>
         </div>
     )
 }

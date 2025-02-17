@@ -2,6 +2,8 @@ import {
         REGISTER_USUARIO,
         LOGIN_USUARIO,
         LOGOUT_USUARIO,
+        FORGOT_PASSWORD,
+        CHANGE_PASSWORD,
         OBTENER_CATEGORIAS,
         CREAR_CATEGORIA,
         ACTUALIZAR_CATEGORIA,
@@ -40,6 +42,16 @@ function rootReducer(state = initialState, action) {
                 usuario: null,
                 categorias: [],
                 gastos: []
+            }
+        
+        case FORGOT_PASSWORD:
+            return{
+                ...state,
+            }
+
+        case CHANGE_PASSWORD:
+            return{
+                ...state,
             }
 
         //CATEGORIAS

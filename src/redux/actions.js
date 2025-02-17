@@ -3,6 +3,8 @@ import {
         REGISTER_USUARIO,
         LOGIN_USUARIO,
         LOGOUT_USUARIO,
+        CHANGE_PASSWORD,
+        FORGOT_PASSWORD,
         OBTENER_CATEGORIAS,
         CREAR_CATEGORIA,
         ACTUALIZAR_CATEGORIA,
@@ -32,7 +34,7 @@ export const registerUsuario = (userData) => {
                 payload: data,
             });
 
-            return { success: true}
+            return { success: true }
             
         } catch (error) {
             alert(error.response?.data.message || error.message);
@@ -109,6 +111,44 @@ export const validarSesion = () => {
         }
     };
 };
+
+export const forgotPassword = (gmailUsuario) => {
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.post(`${LOCAL}/usuarios/forgotPassword`, {
+                gmailUsuario
+            });
+
+            return dispatch({
+                type: FORGOT_PASSWORD,
+                payload: data
+            })
+        } catch (error) {
+            alert(error.response?.data.message || error.message);
+        }
+    }
+}
+
+export const changePassword = (token, nuevaContraseña) => {
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.put(`${LOCAL}/usuarios/changePassword?token=${token}`, {
+                nuevaContraseña
+            });
+
+            dispatch({
+                type: CHANGE_PASSWORD,
+                payload: data
+            })
+
+            return { success: true };
+
+        } catch (error) {
+            alert(error.response?.data.message || error.message);
+            return { success: false };
+        }
+    }
+}
 
 //CATEGORIAS
 
