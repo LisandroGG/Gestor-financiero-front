@@ -9,6 +9,7 @@ import Categorias from "../Categorias/Categorias";
 import CrearCategoria from "../Categorias/CrearCategoria";
 import Gastos from "../Gastos/Gastos";
 import CrearGasto from "../Gastos/CrearGasto";
+import ExportCsv from "../Csv/ExportCsv";
 
 const Home = () => {
     const usuario = useSelector((state) => state.usuario);
@@ -55,6 +56,7 @@ const Home = () => {
             <CrearCategoria />
             <Gastos gastos={gastos}/>
             <CrearGasto />
+            <ExportCsv usuario={usuario} gastos={gastos} />
             <button onClick={handleLogout} className="border-2 bg-rose-100">
                 Cerrar sesión
             </button>
