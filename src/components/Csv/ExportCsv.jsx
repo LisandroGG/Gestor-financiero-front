@@ -18,7 +18,7 @@ const ExportCsv = ({ usuario, gastos = [] }) => {
     const isDisabled = datosCsv.length === 0
 
     return (
-        <CSVLink data={datosCsv} headers={headers} filename={`gastos_${usuario?.nombreUsuario || "usuario"}.csv`}>
+        <CSVLink data={datosCsv} headers={headers} filename={`gastos_${usuario?.gmailUsuario || "usuario"}.csv`}>
             <button className={`p-2 rounded ${isDisabled ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white'}`} 
             disabled={isDisabled}>Exportar en CSV</button>
         </CSVLink>

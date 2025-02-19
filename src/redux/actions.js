@@ -104,6 +104,7 @@ export const validarSesion = () => {
                 payload: {
                     idUsuario: data.idUsuario,
                     nombreUsuario: data.nombreUsuario,
+                    gmailUsuario: data.gmailUsuario,
                 },
             });
         } catch (error) {
