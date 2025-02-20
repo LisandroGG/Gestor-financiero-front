@@ -113,19 +113,26 @@ export const validarSesion = () => {
     };
 };
 
-export const forgotPassword = (gmailUsuario) => {
+export const forgotPassword = (gmailUsuario, navigate) => {
     return async(dispatch) => {
         try {
             const { data } = await axios.post(`${LOCAL}/usuarios/forgotPassword`, {
                 gmailUsuario
             });
 
+            alert('Se ha enviado un correo para recuperar tu contraseña')
+
             return dispatch({
                 type: FORGOT_PASSWORD,
                 payload: data
             })
         } catch (error) {
-            alert(error.response?.data.message || error.message);
+            const errorMessage = error.response?.data?.message || error.message;
+            alert(errorMessage);
+
+            if (errorMessage === "El usuario debe estar verificado") {
+                navigate("/login");
+            }
         }
     }
 }

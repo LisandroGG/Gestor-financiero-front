@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import ForgotPassword from './components/Password/forgotPassword';
 import ChangePassword from './components/Password/changePassword';
+import VerificarCuenta from './components/VerificarCuenta/VerificarCuenta'
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
     // Si el usuario no está validado, redirigir a /login o /register
     if (!usuario) {
         const path = window.location.pathname;
-        const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword"];
+        const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword", "/verificar"];
 
         if (!allowedRoutes.includes(path)) {
             navigate("/login");
@@ -46,6 +47,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/forgotPassword' element={<ForgotPassword />} /> 
         <Route path='/changePassword' element={<ChangePassword />} />
+        <Route path="/verificar" element={<VerificarCuenta />} />
       </Routes>
   );
 }

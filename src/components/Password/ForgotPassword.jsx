@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 import { forgotPassword } from "../../redux/actions";
 
 const ForgotPassword = () => {
     const [gmailUsuario, setGmailUsuario] = useState(""); 
     
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const handleSendEmail = async(e) => {
         e.preventDefault()
@@ -15,7 +16,7 @@ const ForgotPassword = () => {
             return alert('Ingrese un gmail')
         }
 
-        await dispatch(forgotPassword(gmailUsuario))
+        await dispatch(forgotPassword(gmailUsuario, navigate))
     }
     
     return(

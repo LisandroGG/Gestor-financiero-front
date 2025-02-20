@@ -17,8 +17,6 @@ const Home = () => {
     const categorias = useSelector((state) => state.categorias);
     const gastos = useSelector((state) => state.gastos);
 
-    console.log('estos son los datos de usuario:', usuario)
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
