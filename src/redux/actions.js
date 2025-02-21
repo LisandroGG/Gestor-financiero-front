@@ -37,7 +37,8 @@ export const registerUsuario = (userData) => {
             return { success: true }
             
         } catch (error) {
-            alert(error.response?.data.message || error.message);
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     };
 };
