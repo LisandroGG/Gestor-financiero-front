@@ -34,7 +34,7 @@ export const registerUsuario = (userData) => {
                 payload: data,
             });
 
-            return { success: true }
+            return { success: true, message: data.message };
             
         } catch (error) {
             const errorMessage = error.response?.data.message || error.message;
