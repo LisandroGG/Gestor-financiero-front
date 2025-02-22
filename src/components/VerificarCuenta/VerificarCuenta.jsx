@@ -16,23 +16,18 @@ const VerificarCuenta = () => {
         if (token) {
             axios.get(`${LOCAL}/usuarios/verificar?token=${token}`, { withCredentials: true })
                 .then(() => {
-                    // Mensaje de éxito
                     setMessage("¡Cuenta verificada con éxito! Redirigiendo...");
-                    // Temporizador de 3 segundos antes de redirigir
                     setTimeout(() => {
                         navigate("/login");
-                    }, 3000);
+                    }, 1000);
                 })
                 .catch(error => {
-                    // Mensaje de error
                     setError(error.response?.data?.message || "Error al verificar la cuenta. Redirigiendo...");
-                    // Temporizador de 3 segundos antes de redirigir
                     setTimeout(() => {
                         navigate("/login");
-                    }, 3000);
+                    }, 1000);
                 })
                 .finally(() => {
-                    // Finaliza el estado de carga
                     setLoading(false);
                 });
         } else {

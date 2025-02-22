@@ -4,6 +4,7 @@ import {
         LOGOUT_USUARIO,
         FORGOT_PASSWORD,
         CHANGE_PASSWORD,
+        VALIDATION_MAIL,
         OBTENER_CATEGORIAS,
         CREAR_CATEGORIA,
         ACTUALIZAR_CATEGORIA,
@@ -52,6 +53,11 @@ function rootReducer(state = initialState, action) {
         case CHANGE_PASSWORD:
             return{
                 ...state,
+            }
+
+        case VALIDATION_MAIL:
+            return{
+                ...state
             }
 
         //CATEGORIAS

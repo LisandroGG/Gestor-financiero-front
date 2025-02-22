@@ -10,8 +10,8 @@ const Register = () => {
     const [nombreUsuario, setNombre] = useState("");
     const [gmailUsuario, setGmail] = useState("");
     const [contraseñaUsuario, setContraseña] = useState("");
-    const [error, SetError] = useState("")
-    const [isLoading, SetIsLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -19,11 +19,11 @@ const Register = () => {
     e.preventDefault();
 
     if (!nombreUsuario || !gmailUsuario || !contraseñaUsuario) {
-        SetError("Todos los campos son obligatorios")
+        setError("Todos los campos son obligatorios")
         return;
     }
 
-    SetIsLoading(true);
+    setIsLoading(true);
 
     const userData = {
         nombreUsuario: nombreUsuario,
@@ -35,7 +35,7 @@ const Register = () => {
         const response = await dispatch(registerUsuario(userData));
 
         if (response.success) {
-            SetError("");
+            setError("");
             Swal.fire({
                 icon: "success",
                 title: response.message,
@@ -47,12 +47,12 @@ const Register = () => {
             },
             });
         } else {
-            SetError(response.message);
+            setError(response.message);
         }
         } catch (error) {
-            SetError("Ocurrió un error inesperado.");
+            setError("Ocurrió un error inesperado.");
         } finally {
-            SetIsLoading(false);
+            setIsLoading(false);
     }
     };
 
@@ -99,7 +99,7 @@ const Register = () => {
             </button>
             <h1 className="font-semibold">
             Ya tienes cuenta?{" "}
-            <a href="/login" className="text-black hover:text-sky-700 transition-all">
+            <a href="/login" className="text-sky-500 hover:text-sky-700 transition-all">
             Iniciar sesion
             </a>
             </h1>

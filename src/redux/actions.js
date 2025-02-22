@@ -5,6 +5,7 @@ import {
         LOGOUT_USUARIO,
         CHANGE_PASSWORD,
         FORGOT_PASSWORD,
+        VALIDATION_MAIL,
         OBTENER_CATEGORIAS,
         CREAR_CATEGORIA,
         ACTUALIZAR_CATEGORIA,
@@ -51,24 +52,23 @@ export const loginUsuario = (loginData) => {
                 withCredentials: true,
             });
 
-            console.log('Respuesta completa del backend:', data);
-
             if (!data.token) {
                 throw new Error('El token no está presente en la respuesta.');
             }
 
-            console.log('NOMBRE USUARIO', data.token.nombreUsuario);
-            console.log('ID USUARIO', data.token.idUsuario);
-
-            return dispatch({
+            dispatch({
                 type: LOGIN_USUARIO,
                 payload: {
                     idUsuario: data.token.idUsuario,
                     nombreUsuario: data.token.nombreUsuario,
                 },
             });
+
+            return { success: true, message: data.message };
+
         } catch (error) {
-            alert(error.response?.data.message || error.message);
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     };
 };
@@ -114,26 +114,22 @@ export const validarSesion = () => {
     };
 };
 
-export const forgotPassword = (gmailUsuario, navigate) => {
+export const forgotPassword = (gmailUsuario) => {
     return async(dispatch) => {
         try {
             const { data } = await axios.post(`${LOCAL}/usuarios/forgotPassword`, {
                 gmailUsuario
             });
 
-            alert('Se ha enviado un correo para recuperar tu contraseña')
-
-            return dispatch({
+            dispatch({
                 type: FORGOT_PASSWORD,
                 payload: data
             })
-        } catch (error) {
-            const errorMessage = error.response?.data?.message || error.message;
-            alert(errorMessage);
 
-            if (errorMessage === "El usuario debe estar verificado") {
-                navigate("/login");
-            }
+            return { success: true, message: data.message };
+        } catch (error) {
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     }
 }
@@ -150,11 +146,32 @@ export const changePassword = (token, nuevaContraseña) => {
                 payload: data
             })
 
-            return { success: true };
+            return { success: true, message: data.message };
 
         } catch (error) {
-            alert(error.response?.data.message || error.message);
-            return { success: false };
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
+        }
+    }
+}
+
+export const sendVerification = (gmailUsuario) => {
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.post(`${LOCAL}/usuarios/reverificar`, {
+                gmailUsuario
+            })
+
+            dispatch({
+                type: VALIDATION_MAIL,
+                payload: data
+            })
+
+            return { success: true, message: data.message };
+
+        } catch (error) {
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     }
 }
