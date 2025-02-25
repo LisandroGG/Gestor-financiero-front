@@ -75,11 +75,11 @@ const Login = () =>{
                     onChange={(e) => setContraseña(e.target.value)}
                 />
                 <ErrorMessage message={error} />
-                <button type="submit" 
+                <span className="w-auto flex justify-center"><button type="submit" 
                 disabled={isLoading}
                 className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
-            }`}>{isLoading ? "Cargando..." : "Iniciar Sesion"}</button>
+            }`}>{isLoading ? "Cargando..." : "Iniciar Sesion"}</button></span>
             <div className="flex justify-between">
             <h1 className="font-semibold">¿No tienes una cuenta? <a href="/register" className="text-sky-500 hover:text-sky-700 transition-all"> Registrarse</a></h1>
             <h1 className="font-semibold"><a href="/forgotPassword" className="text-sky-500 hover:text-sky-700 transition-all">Olvide mi contraseña</a></h1>

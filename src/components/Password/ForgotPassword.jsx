@@ -106,18 +106,18 @@ const ForgotPassword = () => {
                 />
                 <ErrorMessage message={error} />
                 {visible && (
-                        <button
+                        <span className="w-auto flex justify-center"><button
                             type="button"
                             onClick={handleSendVerification}
                             disabled={isLoading}
                             className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
                                 isLoading ? "opacity-50 cursor-not-allowed" : ""
-                            }`}>Enviar correo de verificación</button>
+                            }`}>Enviar correo de verificación</button></span>
                     )}
-                <button type="submit" disabled={isLoading}
+                <span className="w-auto flex justify-center"><button type="submit" disabled={isLoading}
                 className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
-                }`}>{isLoading ? "Cargando..." : "Enviar cambio de contraseña"}</button>
+                }`}>{isLoading ? "Cargando..." : "Enviar cambio de contraseña"}</button></span>
                 <h1 className="font-semibold">Ya tienes cuenta?{" "}<a href="/login" className="text-sky-500 hover:text-sky-700 transition-all">Iniciar sesion</a></h1>
             </form>)}
         </div>

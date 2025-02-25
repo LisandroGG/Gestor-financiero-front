@@ -88,7 +88,7 @@ const Register = () => {
                 onChange={(e) => setContraseña(e.target.value)}
             />
             <ErrorMessage message={error} />
-            <button
+            <span className="w-auto flex justify-center"><button
             type="submit"
             disabled={isLoading}
             className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
@@ -96,7 +96,7 @@ const Register = () => {
             }`}
             >
             {isLoading ? "Cargando..." : "Crear Cuenta"}
-            </button>
+            </button></span>
             <h1 className="font-semibold">
             Ya tienes cuenta?{" "}
             <a href="/login" className="text-sky-500 hover:text-sky-700 transition-all">

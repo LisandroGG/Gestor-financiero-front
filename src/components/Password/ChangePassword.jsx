@@ -70,10 +70,10 @@ const ChangePassword = () => {
                     onChange={(e) => setNuevaContraseña(e.target.value)}
                 />
                 <ErrorMessage message={error} />
-                <button type="submit" disabled={isLoading}
+                <span className="w-auto flex justify-center"><button type="submit" disabled={isLoading}
                 className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
-                }`}>{isLoading ? "Cargando..." : "Actualizar contraseña"}</button>
+                }`}>{isLoading ? "Cargando..." : "Actualizar contraseña"}</button></span>
             </form>)}
         </div>
     )
