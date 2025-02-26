@@ -61,7 +61,8 @@ const Login = () =>{
         </>
     ) : (
             <form onSubmit={handleSubmit}
-            className="flex flex-col gap-4 border-gray-200 border-2 p-4 rounded-md w-72 md:w-[500px] lg:w-[800px]">
+            className="flex flex-col gap-4 border-gray-200 border-2 p-4 md:p-8 lg:p-10 rounded-md w-80 md:w-form-md lg:w-form-lg">
+                <h1 className="text-2xl font-bold">Iniciar sesion</h1>
                 <Input
                     type="mail"
                     placeholder="Introduzca su gmail"
@@ -80,8 +81,8 @@ const Login = () =>{
                 className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
             }`}>{isLoading ? "Cargando..." : "Iniciar Sesion"}</button></span>
-            <div className="flex justify-between">
-            <h1 className="font-semibold">¿No tienes una cuenta? <a href="/register" className="text-sky-500 hover:text-sky-700 transition-all"> Registrarse</a></h1>
+            <div className="flex flex-col sm:flex-row text-center justify-between">
+            <h1 className="font-semibold">¿No tienes una cuenta? <a href="/register" className="text-sky-500 hover:text-sky-700 transition-all"> Registrate</a></h1>
             <h1 className="font-semibold"><a href="/forgotPassword" className="text-sky-500 hover:text-sky-700 transition-all">Olvide mi contraseña</a></h1>
             </div>
             </form>)}

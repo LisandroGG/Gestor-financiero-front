@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,7 +12,12 @@ const VerificarCuenta = () => {
 
     const LOCAL = import.meta.env.VITE_LOCAL;
 
+    const executed = useRef(false)
+
     useEffect(() => {
+        if (executed.current) return;
+        executed.current = true;
+
         if (token) {
             axios.get(`${LOCAL}/usuarios/verificar?token=${token}`, { withCredentials: true })
                 .then(() => {

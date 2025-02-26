@@ -66,7 +66,7 @@ const Register = () => {
     ) : (
         <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 border-gray-200 border-2 p-4 rounded-md w-72 md:w-[500px] lg:w-[800px]"
+            className="flex flex-col gap-4 border-gray-200 border-2 p-4 md:p-8 lg:p-10 rounded-md w-80 md:w-form-md lg:w-form-lg"
         >
             <h1 className="text-2xl font-bold">Crear una cuenta</h1>
             <Input
