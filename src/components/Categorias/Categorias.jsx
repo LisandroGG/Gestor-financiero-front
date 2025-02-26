@@ -42,7 +42,6 @@ const Categorias = ({ categorias }) => {
                     return
                 }
 
-                await dispatch(obtenerGastos(usuario.idUsuario));
                 setErrorMessage("");
             } catch (error) {
                 console.log('Error al eliminar la categoria', error)
@@ -52,8 +51,8 @@ const Categorias = ({ categorias }) => {
     };
 
     return (
-        <div>
-            {errorMessage}
+        <section>
+            {errorMessage && <p>{errorMessage}</p>}
             {categorias.length ? (
                 <ul>
                     {categorias.map((categoria) => (
@@ -63,9 +62,10 @@ const Categorias = ({ categorias }) => {
                                     type="text"
                                     value={categoriaEditada}
                                     onChange={(e) => setCategoriaEditada(e.target.value)}
+                                    aria-label="Editar categoría"
                                 />
                             ) : (
-                                categoria.nombreCategoria
+                                <span>{categoria.nombreCategoria}</span>
                             )}
 
                             {idCategoriaEditada !== categoria.idCategoria && (
@@ -87,7 +87,7 @@ const Categorias = ({ categorias }) => {
             ) : (
                 <p>No hay categorías disponibles.</p>
             )}
-        </div>
+        </section>
     );
 };
 

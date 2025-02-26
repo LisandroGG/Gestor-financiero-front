@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUsuario } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { obtenerCategorias } from "../../redux/actions";
 import { obtenerGastos } from "../../redux/actions";
 
@@ -50,7 +50,7 @@ const Home = () => {
     }
 
     return (
-        <div>
+        <main>
             <h1>Hola {usuario?.nombreUsuario}</h1>
             <h1>Estas son tus categorías</h1>
             <Categorias categorias={categorias} />
@@ -62,7 +62,7 @@ const Home = () => {
             <button onClick={handleLogout} className="border-2 bg-rose-100">
                 Cerrar sesión
             </button>
-        </div>
+        </main>
     );
 };
 

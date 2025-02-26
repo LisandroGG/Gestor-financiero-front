@@ -37,29 +37,40 @@ const CrearGasto = () => {
     };
 
     return (
-        <div>
-            <h2>Crear Gasto</h2>
-            <form onSubmit={handleCrearGasto}>
-                <input
-                    type="number"
-                    placeholder="Monto del gasto"
-                    value={montoGasto}
-                    onChange={(e) => setMontoGasto(e.target.value)}
-                />
-                <select
-                    value={categoriaSeleccionada}
-                    onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-                >
-                    <option value="">Selecciona una categoría</option>
-                    {categorias.map((categoria) => (
-                        <option key={categoria.idCategoria} value={categoria.idCategoria}>
-                            {categoria.nombreCategoria}
-                        </option>
-                    ))}
-                </select>
-                <button type="submit">Crear gasto</button>
-            </form>
-        </div>
+        <section>
+            <header>
+                <h2>Crear Gasto</h2>
+            </header>
+            <article>
+                <form onSubmit={handleCrearGasto}>
+                    <div>
+                        <label htmlFor="montoGasto">Monto del gasto</label>
+                        <input
+                            id="montoGasto"
+                            type="number"
+                            placeholder="Monto del gasto"
+                            value={montoGasto}
+                            onChange={(e) => setMontoGasto(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="categoriaSeleccionada">Categoria</label>
+                        <select
+                            value={categoriaSeleccionada}
+                            onChange={(e) => setCategoriaSeleccionada(e.target.value)}
+                        >
+                            <option value="">Selecciona una categoría</option>
+                            {categorias.map((categoria) => (
+                                <option key={categoria.idCategoria} value={categoria.idCategoria}>
+                                    {categoria.nombreCategoria}
+                                </option>
+                            ))}
+                        </select>
+                    </div>  
+                    <button type="submit">Crear gasto</button>
+                </form>
+            </article>
+        </section>
     );
 };
 

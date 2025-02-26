@@ -55,8 +55,10 @@ const Gastos = ({ gastos }) => {
     };
 
     return (
-        <div>
-            <h1>Gastos</h1>
+        <section>
+            <header>
+                <h1>Gastos</h1>
+            </header>
 
             {gastos.length ? (
                 <ul>
@@ -96,7 +98,7 @@ const Gastos = ({ gastos }) => {
             ) : (
                 <p>No hay gastos registrados.</p>
             )}
-        </div>
+        </section>
     );}
 
 export default Gastos;

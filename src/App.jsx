@@ -1,6 +1,6 @@
 import './App.css'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validarSesion } from './redux/actions';
 
@@ -16,9 +16,12 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Hook para navegar entre rutas
   const usuario = useSelector(state => state.usuario); // Cambia esto según el estado que uses
+  const executed = useRef(false)
 
   useEffect(() => {
     // Validar sesión cuando la app se carga
+    if (executed.current) return;
+        executed.current = true;
     dispatch(validarSesion());
   }, [dispatch]);
 
