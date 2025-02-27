@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUsuario } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { obtenerCategorias } from "../../redux/actions";
 import { obtenerGastos } from "../../redux/actions";
 
@@ -11,6 +11,7 @@ import Gastos from "../Gastos/Gastos";
 import CrearGasto from "../Gastos/CrearGasto";
 import ExportCsv from "../Csv/ExportCsv";
 import GastosGraficos from "../GastosGrafico/GastosGrafico";
+import Nav from "../Nav/Nav";
 
 const Home = () => {
     const usuario = useSelector((state) => state.usuario);
@@ -50,18 +51,14 @@ const Home = () => {
     }
 
     return (
-        <main>
-            <h1>Hola {usuario?.nombreUsuario}</h1>
+        <main className="bg-fondoBody h-screen">
+            <Nav usuario={usuario} logout={handleLogout}/>
             <h1>Estas son tus categorías</h1>
             <Categorias categorias={categorias} />
-            <CrearCategoria />
             <Gastos gastos={gastos}/>
             <CrearGasto />
             <ExportCsv usuario={usuario} gastos={gastos} />
             <GastosGraficos gastos={gastos} />
-            <button onClick={handleLogout} className="border-2 bg-rose-100">
-                Cerrar sesión
-            </button>
         </main>
     );
 };

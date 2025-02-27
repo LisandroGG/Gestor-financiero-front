@@ -202,21 +202,21 @@ export const crearCategoria = (idUsuario, nuevaCategoria) => {
         try {
             const { data } = await axios.post(`${LOCAL}/categorias/crear`, {
                 idUsuario,
-                nombreCategoria: nombreCategoriaNormalizado, // Asegúrate de que el nombre esté normalizado
+                nombreCategoria: nombreCategoriaNormalizado,
             }, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
 
-            console.log('Categoría creada:', data);
-
-            return dispatch({
+            dispatch({
                 type: CREAR_CATEGORIA,
                 payload: data,
             });
+
+            return { success: true, message: 'Categoria creada!' };
         } catch (error) {
-            console.error('Error al crear categoría:', error.response?.data?.message || error.message);
-            alert(error.response?.data?.message || 'ERROR AL CREAR CATEGORÍA');
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     };
 };

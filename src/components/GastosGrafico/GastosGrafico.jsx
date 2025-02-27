@@ -31,7 +31,7 @@ const GastosGraficos = ({ gastos }) => {
                 innerRadius={60}
                 dataKey="value"
                 paddingAngle={5}
-                label={data.length > 0}
+                //label={data.length > 0}
             >
                 {chartData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />

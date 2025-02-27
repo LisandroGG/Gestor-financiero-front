@@ -14,7 +14,8 @@ export default {
       },
       colors: {
         fondoBody: '#EDEDED',
-        fondo: '#FFFFFF'
+        fondo: '#FFFFFF',
+        nav: '#2B2C30'
       }
     },
   },
