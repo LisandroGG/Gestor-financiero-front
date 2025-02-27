@@ -290,8 +290,11 @@ export const crearGasto = (gasto) => async (dispatch) => {
             type: CREAR_GASTO,
             payload: data.gasto,
         });
+
+        return { success: true, message: data.message };
     } catch (error) {
-        console.error("Error al crear gasto:", error);
+        const errorMessage = error.response?.data.message || error.message;
+        return { success: false, message: errorMessage };
     }
 };
 

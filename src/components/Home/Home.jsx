@@ -6,9 +6,7 @@ import { obtenerCategorias } from "../../redux/actions";
 import { obtenerGastos } from "../../redux/actions";
 
 import Categorias from "../Categorias/Categorias";
-import CrearCategoria from "../Categorias/CrearCategoria";
 import Gastos from "../Gastos/Gastos";
-import CrearGasto from "../Gastos/CrearGasto";
 import ExportCsv from "../Csv/ExportCsv";
 import GastosGraficos from "../GastosGrafico/GastosGrafico";
 import Nav from "../Nav/Nav";
@@ -22,6 +20,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
+    const [fechaHoraActual, setFechaHoraActual] = useState("");
 
     useEffect(() => {
         if (usuario?.idUsuario) {
@@ -41,6 +40,24 @@ const Home = () => {
         }
     }, [usuario, dispatch]);
 
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            const ahora = new Date();
+            const fechaHoraFormateada = ahora.toLocaleString("es-AR", {
+                weekday: "long",
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+            setFechaHoraActual(fechaHoraFormateada);
+        }, 1000);
+    
+        return () => clearInterval(intervalo);
+    }, []);
+
     const handleLogout = () => {
         dispatch(logoutUsuario());
         navigate('/login');
@@ -53,10 +70,10 @@ const Home = () => {
     return (
         <main className="bg-fondoBody h-screen">
             <Nav usuario={usuario} logout={handleLogout}/>
+            <h1>Fecha y Hora: {fechaHoraActual}</h1>
             <h1>Estas son tus categorías</h1>
             <Categorias categorias={categorias} />
             <Gastos gastos={gastos}/>
-            <CrearGasto />
             <ExportCsv usuario={usuario} gastos={gastos} />
             <GastosGraficos gastos={gastos} />
         </main>

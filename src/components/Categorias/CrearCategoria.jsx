@@ -58,7 +58,7 @@ const CrearCategoria = () => {
 
     return(
         <section>
-            <button onClick={toggleModal} className="bg-sky-500 hover:bg-sky-700 font-bold p-2 rounded-lg">Crear categoria</button>
+            <button onClick={toggleModal} className="bg-sky-500 hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear categoria</button>
             
             {modalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 text-black">

@@ -12,9 +12,9 @@ const Nav = ({usuario, logout}) => {
     return(
         <header className="bg-nav p-2">
             <nav>
-                <ul className="flex justify-between text-white">
+                <ul className="flex justify-between text-white items-center">
                     <li>Hola {usuario.nombreUsuario}</li>
-                    <div className="flex">
+                    <div className="flex gap-4">
                         <CrearCategoria />
                         <CrearGasto />
                     </div>
