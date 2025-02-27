@@ -44,7 +44,7 @@ const VerificarCuenta = () => {
     }, [token, navigate, LOCAL]);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
             <h1 className="text-2xl font-bold">Verificando cuenta...</h1>
             {loading ? (
                 <p>Por favor, espera unos segundos.</p>

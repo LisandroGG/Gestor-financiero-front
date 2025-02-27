@@ -53,7 +53,7 @@ const Login = () =>{
 
 
     return(
-        <div className="min-h-screen grid place-content-center">
+        <div className="min-h-screen grid place-content-center bg-fondoBody">
             {isLoading ? (
         <>
         <img src="/assets/LoadingGif.gif" alt="Cargando..." className="w-20 h-20 mx-auto" />
@@ -61,8 +61,8 @@ const Login = () =>{
         </>
     ) : (
             <form onSubmit={handleSubmit}
-            className="flex flex-col gap-4 border-gray-200 border-2 p-4 md:p-8 lg:p-10 rounded-md w-80 md:w-form-md lg:w-form-lg">
-                <h1 className="text-2xl font-bold">Iniciar sesion</h1>
+            className="flex flex-col gap-4 bg-fondo border-gray-300 border-2 p-4 md:p-8 lg:p-10 rounded-md w-80 md:w-form-md lg:w-form-lg">
+                <h1 className="text-2xl font-bold ">Iniciar sesion</h1>
                 <Input
                     type="mail"
                     placeholder="Introduzca su gmail"

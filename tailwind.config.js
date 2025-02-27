@@ -11,6 +11,10 @@ export default {
         form: '20rem',
         'form-md': '37.5rem',
         'form-lg': '43.75rem'
+      },
+      colors: {
+        fondoBody: '#EDEDED',
+        fondo: '#FFFFFF'
       }
     },
   },
