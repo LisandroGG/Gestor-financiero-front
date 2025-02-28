@@ -10,16 +10,13 @@ const Nav = ({usuario, logout}) => {
     }
 
     return(
-        <header className="bg-nav p-2">
+        <header className="bg-nav p-4 rounded-b-2xl">
             <nav>
-                <ul className="flex justify-between text-white items-center">
+                <ul className="flex justify-between text-white items-center md:mx-32 lg:mx-52">
                     <li>Hola {usuario.nombreUsuario}</li>
-                    <div className="flex gap-4">
-                        <CrearCategoria />
-                        <CrearGasto />
-                    </div>
+                    <li>Logo</li>
                     <li>
-                        <button onClick={logout} className="p-2 rounded-lg bg-sky-500 hover:bg-sky-700 font-bold">
+                        <button onClick={logout} className="p-2 rounded-lg bg-sky-500 ring-sky-700 hover:ring-2 hover:bg-sky-700 font-bold transition-all">
                             Cerrar sesión
                         </button>
                     </li>

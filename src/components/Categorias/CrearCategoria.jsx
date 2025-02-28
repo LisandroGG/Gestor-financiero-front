@@ -58,7 +58,7 @@ const CrearCategoria = () => {
 
     return(
         <section>
-            <button onClick={toggleModal} className="bg-sky-500 hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear categoria</button>
+            <button onClick={toggleModal} className="bg-sky-500 ring-sky-700 hover:ring-2 transition-all hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear categoria</button>
             
             {modalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 text-black">
@@ -87,13 +87,13 @@ const CrearCategoria = () => {
                                     <button 
                                         type="button" 
                                         onClick={toggleModal}
-                                        className="bg-gray-300 hover:bg-gray-400 transition-all px-4 py-2 rounded font-bold"
+                                        className="bg-gray-300 ring-gray-400 hover:ring-2 hover:bg-gray-400 transition-all px-4 py-2 rounded font-bold"
                                     >
                                         Cancelar
                                     </button>
                                     <button 
                                         type="submit" 
-                                        className="bg-sky-500 hover:bg-sky-700 transition-all text-white font-bold px-4 py-2 rounded"
+                                        className="bg-sky-500 ring-sky-700 hover:ring-2 hover:bg-sky-700 transition-all text-white font-bold px-4 py-2 rounded"
                                     >
                                         {isLoading ? 'Creando...' : 'Crear categoria'}
                                     </button>

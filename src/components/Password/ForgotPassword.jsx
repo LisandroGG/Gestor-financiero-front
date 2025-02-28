@@ -115,7 +115,7 @@ const ForgotPassword = () => {
                             }`}>Enviar correo de verificación</button></span>
                     )}
                 <span className="w-auto flex justify-center"><button type="submit" disabled={isLoading}
-                className={`text-xl font-bold rounded-md bg-sky-500 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
+                className={`text-xl font-bold rounded-md bg-sky-500 ring-sky-700 hover:ring-2 px-5 py-2.5 text-white hover:bg-sky-700 transition-all ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
                 }`}>{isLoading ? "Cargando..." : "Enviar cambio de contraseña"}</button></span>
                 <h1 className="font-semibold">Ya tienes cuenta?{" "}<a href="/login" className="text-sky-500 hover:text-sky-700 transition-all">Iniciar sesion</a></h1>

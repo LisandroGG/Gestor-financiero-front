@@ -17,7 +17,7 @@ const Gastos = ({ gastos }) => {
         setCategoriaSeleccionada(gasto.idCategoria);
     };
 
-    const handleGuardarGasto = async() => {
+    const handleGuardarGasto = async(e) => {
         e.preventDefault();
 
         if (!montoGasto || !categoriaSeleccionada) {
@@ -87,7 +87,8 @@ const Gastos = ({ gastos }) => {
                                 </>
                             ) : (
                                 <>
-                                    <span>{gasto.cantidadGasto} - {gasto.categoria?.nombreCategoria || 'Categoria Eliminada'}</span>
+                                    <span>{gasto.cantidadGasto}  {gasto.categoria?.nombreCategoria || 'Categoria Eliminada'} </span>
+                                    <span>{new Date(gasto.createdAt).toLocaleDateString('es-ES')} </span>
                                     <button onClick={() => handleEditarGasto(gasto)}>Editar</button>
                                     <button onClick={() => handleEliminarGasto(gasto.idGasto)}>Eliminar</button>
                                 </>
