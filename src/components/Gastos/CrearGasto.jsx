@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { crearGasto, obtenerGastos } from "../../redux/actions";
 import Input from "../UI/input";
 import Swal from "sweetalert2";
+import ErrorMessage from "../UI/ErrorMessage";
 
 const CrearGasto = () => {
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const CrearGasto = () => {
 
     return (
         <section>
-            <button onClick={toggleModal} className="bg-sky-500 ring-sky-700 hover:ring-2 transition-all hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear gasto</button>
+            <button onClick={toggleModal} className="text-white bg-sky-500 ring-sky-700 hover:ring-2 transition-all hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear gasto</button>
 
             {modalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 text-black">
@@ -97,10 +98,8 @@ const CrearGasto = () => {
                                             </option>
                                         ))}
                                 </select>
-                                {error && (
-                                            <p className="text-red-500 text-sm mb-4 font-bold">{error}</p>
-                                )}
-                                <div className="flex justify-end gap-2">
+                                <ErrorMessage message={error} />
+                                <div className="flex justify-end gap-2 mt-2">
                                     <button 
                                         type="button" 
                                         onClick={toggleModal}

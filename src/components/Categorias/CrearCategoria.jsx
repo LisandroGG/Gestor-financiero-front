@@ -3,6 +3,7 @@ import { useState } from "react";
 import { crearCategoria } from "../../redux/actions";
 import Input from "../UI/input";
 import Swal from "sweetalert2";
+import ErrorMessage from "../UI/ErrorMessage";
 
 const CrearCategoria = () => {
     const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const CrearCategoria = () => {
 
     return(
         <section>
-            <button onClick={toggleModal} className="bg-sky-500 ring-sky-700 hover:ring-2 transition-all hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear categoria</button>
+            <button onClick={toggleModal} className="bg-sky-500 text-white ring-sky-700 hover:ring-2 transition-all hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear categoria</button>
             
             {modalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 text-black">
@@ -80,10 +81,8 @@ const CrearCategoria = () => {
                                     placeholder="Nueva categoria"
                                     className="mb-4"
                                 />
-                                {error && (
-                                    <p className="text-red-500 text-sm mb-4 font-bold">{error}</p>
-                                )}
-                                <div className="flex justify-end gap-2">
+                                <ErrorMessage message={error} />
+                                <div className="flex justify-end gap-2 mt-2">
                                     <button 
                                         type="button" 
                                         onClick={toggleModal}

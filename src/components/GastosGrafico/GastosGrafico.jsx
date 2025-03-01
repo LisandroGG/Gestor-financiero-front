@@ -20,7 +20,7 @@ const GastosGraficos = ({ gastos }) => {
     const colors = data.length > 0 ? COLORS : ["#ccc"];
 
     return (
-        <PieChart width={220} height={220}>
+        <PieChart width={240} height={240}>
             <Tooltip />
             <Legend />
             <Pie

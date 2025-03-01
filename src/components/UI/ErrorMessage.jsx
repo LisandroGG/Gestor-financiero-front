@@ -4,7 +4,7 @@ const ErrorMessage = ({ message }) => {
     if (!message) return null;
 
     return (
-        <span className="text-red-500 text-sm mt-2">
+        <span className="text-red-500 text-sm pb-4 font-bold">
         {message}
         </span>
     );
