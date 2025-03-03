@@ -67,7 +67,7 @@ const Gastos = ({ gastos }) => {
                             {gastoEditado?.idGasto === gasto.idGasto ? (
                                 <>
                                     <input
-                                        type="text"
+                                        type="number"
                                         placeholder="Monto del gasto"
                                         value={montoGasto}
                                         onChange={(e) => setMontoGasto(e.target.value)}

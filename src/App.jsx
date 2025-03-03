@@ -44,6 +44,7 @@ function App() {
 
 
   return (
+    <div className="bg-fondoBody min-h-screen">
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register />} />
@@ -52,6 +53,7 @@ function App() {
         <Route path='/changePassword' element={<ChangePassword />} />
         <Route path="/verificar" element={<VerificarCuenta />} />
       </Routes>
+      </div>
   );
 }
 

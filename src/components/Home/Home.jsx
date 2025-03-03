@@ -79,18 +79,18 @@ const Home = () => {
     }
 
     return (
-        <div className="bg-fondoBody h-screen">
+        <div className="scrollbar-custom">
             <Nav usuario={usuario} logout={handleLogout}/>
             
             <main className="">
-                <section className="bg-fondo mt-4 md:mt-8 lg:mt-10 mx-10 md:mx-32 lg:mx-52 p-6 rounded-xl justify-evenly flex flex-col md:flex-row lg:flex-row gap-4">
+                <section className="bg-fondo mt-4 md:mt-8 lg:mt-10 mx-10 md:mx-32 lg:mx-44 p-6 rounded-xl justify-evenly flex flex-col md:flex-row lg:flex-row gap-4">
                     <HomeArticle text1="Fecha y Hora" data={fechaHoraActual} />
                     <HomeArticle text1="Total gastado:" data={gastoTotal}/>
                     <HomeArticle text1="Cantidad de gastos" data={cantidadGastos}/>
                 </section>
 
-                <section className="bg-fondo mt-4 md:mt-8 lg:mt-10 mx-10 md:mx-32 lg:mx-52 p-6 rounded-xl flex flex-col md:flex-row lg:flex-row justify-between">
-                    <article>
+                <section className="bg-fondo mt-4 md:mt-8 lg:mt-10 mx-10 md:mx-32 lg:mx-44 p-6 rounded-xl flex flex-col md:flex-row lg:flex-row justify-between">
+                    <article className="bg-fondoBody p-4 rounded-xl flex flex-col gap-4 items-center">
                         <Categorias categorias={categorias} />
                         <CrearCategoria />
                     </article>

@@ -225,23 +225,23 @@ export const actualizarCategoria = (idUsuario, idCategoriaEditada, categoriaEdit
     return async (dispatch) => {
         try {
             const { data } = await axios.put(`${LOCAL}/categorias/actualizar/${idUsuario}/${idCategoriaEditada}`, {
-                nombreCategoria: categoriaEditada.trim(), // Asegúrate de que el nombre esté limpio
+                nombreCategoria: categoriaEditada.trim(),
             }, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
 
-            return dispatch({
+            dispatch({
                 type: ACTUALIZAR_CATEGORIA,
                 payload: {
                     idCategoria: data.categoria.idCategoria,
                     nombreCategoria: data.categoria.nombreCategoria
                 },
             });
-            
+            return { success: true, message: 'Categoria actualizada!' };
         } catch (error) {
-            console.log('Error al actualizar categoria', error.response?.data?.message || error.message);
-            alert(error.response?.data?.message || 'ERROR AL ACTUALIZAR CATEGORIA');
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     };
 };
@@ -254,14 +254,15 @@ export const eliminarCategoria = (idUsuario, idCategoria) => {
                 withCredentials: true,
             });
 
-            return dispatch({
+            dispatch({
                 type: ELIMINAR_CATEGORIA,
                 payload: { idCategoria }
             })
+
+            return { success: true, message: 'Categoria eliminada!' };
         } catch (error) {
-            console.log('Error al eliminar categoria', error.message);
-            //MENSAJE CON EL ERROR DEL BACKEND
-            return { message: error.response?.data?.message || 'ERROR AL ELIMINAR CATEGORIA' };
+            const errorMessage = error.response?.data.message || error.message;
+            return { success: false, message: errorMessage };
         }
     }
 }

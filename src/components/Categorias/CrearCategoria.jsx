@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { crearCategoria } from "../../redux/actions";
-import Input from "../UI/input";
+import Input from "../UI/Input";
 import Swal from "sweetalert2";
 import ErrorMessage from "../UI/ErrorMessage";
 
@@ -58,11 +58,11 @@ const CrearCategoria = () => {
     };
 
     return(
-        <section>
+        <section className="">
             <button onClick={toggleModal} className="bg-sky-500 text-white ring-sky-700 hover:ring-2 transition-all hover:bg-sky-700 font-bold p-2 rounded-lg w-40">Crear categoria</button>
             
             {modalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 text-black">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-[30rem] relative">
                         <header className="mb-4">
                             <h2 className="text-2xl font-bold">Crear categoria</h2>
