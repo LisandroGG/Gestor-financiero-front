@@ -59,7 +59,9 @@ const Categorias = ({ categorias }) => {
             title: "¿Seguro quieres eliminar esta categoria?",
             showDenyButton: true,
             confirmButtonText: "Si",
-            denyButtonText: `No`
+            denyButtonText: `No`,
+            confirmButtonColor: '#0ea5e9',
+            denyButtonColor: '#ef4444'
         }).then(async(result) => {
             if (result.isConfirmed) {
                 try {

@@ -22,7 +22,6 @@ export const initialState = {
 }
 
 function rootReducer(state = initialState, action) {
-    console.log('Acción recibida:', action);
     switch(action.type) {
         //USUARIO
         case REGISTER_USUARIO:
@@ -119,7 +118,6 @@ function rootReducer(state = initialState, action) {
             };
 
         default:
-            console.log('Estado antes de retornar:', state);
             return state;
     }
 }

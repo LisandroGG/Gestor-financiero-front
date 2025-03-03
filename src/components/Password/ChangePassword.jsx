@@ -2,7 +2,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { changePassword } from "../../redux/actions";
-import Input from "../UI/input";
+import Input from "../UI/Input";
 import ErrorMessage from "../UI/ErrorMessage";
 import Swal from "sweetalert2";
 

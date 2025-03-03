@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginUsuario } from "../../redux/actions";
 import Swal from "sweetalert2";
-import Input from "../UI/input";
+import Input from "../UI/Input";
 import ErrorMessage from "../UI/ErrorMessage";
 
 

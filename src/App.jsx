@@ -14,8 +14,8 @@ import VerificarCuenta from './components/VerificarCuenta/VerificarCuenta'
 function App() {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Hook para navegar entre rutas
-  const usuario = useSelector(state => state.usuario); // Cambia esto según el estado que uses
+  const navigate = useNavigate();
+  const usuario = useSelector(state => state.usuario);
   const executed = useRef(false)
 
   useEffect(() => {

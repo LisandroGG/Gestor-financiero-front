@@ -98,8 +98,6 @@ export const validarSesion = () => {
                 withCredentials: true,
             });
 
-            console.log('Sesión validada:', data);
-
             return dispatch({
                 type: LOGIN_USUARIO,
                 payload: {
@@ -190,7 +188,7 @@ export const obtenerCategorias = (idUsuario) => {
                 payload: data
             })
         } catch (error) {
-            console.error("Error al obtener categorías:", error.message);
+            console.error("Error al obtener categorías");
         }
     }
 }
@@ -238,7 +236,7 @@ export const actualizarCategoria = (idUsuario, idCategoriaEditada, categoriaEdit
                     nombreCategoria: data.categoria.nombreCategoria
                 },
             });
-            return { success: true, message: 'Categoria actualizada!' };
+            return { success: true, message: data.message };
         } catch (error) {
             const errorMessage = error.response?.data.message || error.message;
             return { success: false, message: errorMessage };
@@ -259,7 +257,7 @@ export const eliminarCategoria = (idUsuario, idCategoria) => {
                 payload: { idCategoria }
             })
 
-            return { success: true, message: 'Categoria eliminada!' };
+            return { success: true, message: data.message };
         } catch (error) {
             const errorMessage = error.response?.data.message || error.message;
             return { success: false, message: errorMessage };
@@ -279,7 +277,7 @@ export const obtenerGastos = (idUsuario) => {
                 payload: data
             })
         } catch (error) {
-            console.log('Error al obtener gastos', error.message)
+            console.log('Error al obtener gastos')
         }
     }
 }

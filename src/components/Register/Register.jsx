@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUsuario } from "../../redux/actions";
-import Input from "../UI/input";
+import Input from "../UI/Input";
 import ErrorMessage from "../UI/ErrorMessage";
 import Swal from 'sweetalert2';
 

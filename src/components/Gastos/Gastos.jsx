@@ -69,6 +69,8 @@ const Gastos = ({ gastos }) => {
             showDenyButton: true,
             confirmButtonText: "Sí",
             denyButtonText: `No`,
+            confirmButtonColor: '#0ea5e9',
+            denyButtonColor: '#ef4444'
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
