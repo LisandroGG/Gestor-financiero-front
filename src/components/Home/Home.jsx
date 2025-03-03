@@ -10,6 +10,7 @@ import Gastos from "../Gastos/Gastos";
 import ExportCsv from "../Csv/ExportCsv";
 import GastosGraficos from "../GastosGrafico/GastosGrafico";
 import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 import CrearCategoria from "../Categorias/CrearCategoria";
 import CrearGasto from "../Gastos/CrearGasto";
 
@@ -79,31 +80,32 @@ const Home = () => {
     }
 
     return (
-        <div className="scrollbar-custom">
+        <div>
             <Nav usuario={usuario} logout={handleLogout}/>
             
-            <main className="">
-                <section className="bg-fondo mt-4 md:mt-8 lg:mt-10 mx-10 md:mx-32 lg:mx-44 p-6 rounded-xl justify-evenly flex flex-col md:flex-row lg:flex-row gap-4">
+            <main className="mb-6">
+                <section className="bg-fondo mt-4 md:mt-6 lg:mt-6 mx-10 md:mx-32 lg:mx-40 p-6 rounded-xl justify-evenly flex flex-col md:flex-row lg:flex-row gap-4">
                     <HomeArticle text1="Fecha y Hora" data={fechaHoraActual} />
                     <HomeArticle text1="Total gastado:" data={gastoTotal}/>
                     <HomeArticle text1="Cantidad de gastos" data={cantidadGastos}/>
                 </section>
 
-                <section className="bg-fondo mt-4 md:mt-8 lg:mt-10 mx-10 md:mx-32 lg:mx-44 p-6 rounded-xl flex flex-col md:flex-row lg:flex-row justify-between">
-                    <article className="bg-fondoBody p-4 rounded-xl flex flex-col gap-4 items-center">
+                <section className="bg-fondo mt-4 md:mt-6 lg:mt-6 mx-10 md:mx-32 lg:mx-40 p-6 rounded-xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                    <article className="bg-fondoBody p-4 rounded-xl flex flex-col justify-between gap-4 items-center">
                         <Categorias categorias={categorias} />
                         <CrearCategoria />
                     </article>
-                    <article>
-                        <GastosGraficos gastos={gastos} />
-                    </article>
-                    <article>
-                        <Gastos gastos={gastos}/>
+                    <article className="bg-fondoBody p-4 rounded-xl flex flex-col justify-between gap-4 items-center lg:col-start-1 lg:row-start-2">
+                        <Gastos gastos={gastos} />
                         <CrearGasto />
                     </article>
+                    <article className="bg-fondoBody p-4 rounded-xl flex flex-col justify-between gap-4 items-center md:col-span-2 lg:col-span-1 md:row-span-2">
+                        <GastosGraficos gastos={gastos} />
+                        <ExportCsv usuario={usuario} gastos={gastos} />
+                    </article>
                 </section>
-                <ExportCsv usuario={usuario} gastos={gastos} />
             </main>
+            <Footer />
         </div>
     );
 };

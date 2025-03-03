@@ -99,13 +99,13 @@ const Categorias = ({ categorias }) => {
     };
 
     return (
-        <section className="w-full max-h-96 overflow-auto">
+        <section className="w-full max-h-56 lg:min-h-44 overflow-auto">
             {categorias.length ? (
                 <div className="">
                     <table className="min-w-full bg-white border border-gray-300">
                         <thead className="bg-gray-100">
                             <tr>
-                                <th className="border p-2 text-left font-bold">Nombre Categoria</th>
+                                <th className="border p-2 text-left font-bold">Categoria</th>
                                 <th className="border p-2 text-center font-bold">Editar</th>
                                 <th className="border p-2 text-center font-bold">Eliminar</th>
                             </tr>
@@ -134,7 +134,7 @@ const Categorias = ({ categorias }) => {
                     </table>
                 </div>
             ) : (
-                <p>No hay categorías disponibles.</p>
+                <p className='font-semibold text-center w-full h-full flex justify-center items-center'>0 categorias disponibles</p>
             )}
             {modalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">

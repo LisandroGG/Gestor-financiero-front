@@ -314,20 +314,26 @@ export const actualizarGasto = ({ idUsuario, idCategoria, idGasto, cantidadGasto
                 cantidadGasto: data.gasto.cantidadGasto
             },
         });
+
+        return { success: true, message: data.message };
     } catch (error) {
-        console.error("Error al actualizar gasto:", error);
+        const errorMessage = error.response?.data.message || error.message;
+        return { success: false, message: errorMessage };
     }
 };
 
 export const eliminarGasto = (idUsuario, idGasto) => async (dispatch) => {
     try {
-        await axios.delete(`${LOCAL}/gastos/eliminar/${idUsuario}/${idGasto}`);
+        const { data } = await axios.delete(`${LOCAL}/gastos/eliminar/${idUsuario}/${idGasto}`);
         dispatch({
             type: ELIMINAR_GASTO,
-            payload: idGasto, // Enviamos el ID del gasto eliminado
+            payload: idGasto,
         });
+
+        return { success: true, message: data.message };
     } catch (error) {
-        console.error("Error al eliminar gasto:", error);
+        const errorMessage = error.response?.data.message || error.message;
+        return { success: false, message: errorMessage };
     }
 };
 

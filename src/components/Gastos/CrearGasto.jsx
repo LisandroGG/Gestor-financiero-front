@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { crearGasto, obtenerGastos } from "../../redux/actions";
-import Input from "../UI/input";
+import Input from "../UI/Input";
 import Swal from "sweetalert2";
 import ErrorMessage from "../UI/ErrorMessage";
 

@@ -19,7 +19,7 @@ const ExportCsv = ({ usuario, gastos = [] }) => {
 
     return (
         <CSVLink data={datosCsv} headers={headers} filename={`gastos_${usuario?.gmailUsuario || "usuario"}.csv`}>
-            <button className={`p-2 rounded ${isDisabled ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 text-white'}`} 
+            <button className={`p-2 font-semibold rounded-lg  ${isDisabled ? 'bg-gray-300 text-gray-500cursor-not-allowed' : 'bg-sky-500 ring-sky-700 hover:ring-2 hover:bg-sky-700 text-white'}`} 
             disabled={isDisabled}>Exportar en CSV</button>
         </CSVLink>
     );
