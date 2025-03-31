@@ -48,7 +48,7 @@ function App() {
     return (
     <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
         <img src="/assets/LoadingGif.gif" alt="Cargando..." className="w-20 h-20 mx-auto" />
-        <p>Por favor, espera unos segundos.</p>
+        <p>Iniciando sesion...</p>
     </div>
     );
   }
