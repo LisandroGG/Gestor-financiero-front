@@ -62,7 +62,8 @@ const ChangePassword = () => {
             ) : (
             <form onSubmit={handleChangePassword}
             className="flex flex-col gap-4 bg-fondo border-gray-300 border-2 p-4 md:p-8 lg:p-10 rounded-md w-80 md:w-form-md lg:w-form-lg">
-            <h1 className="font-bold text-center text-xl">Ingrese su nueva contraseña</h1>
+            <h1 className="text-3xl font-bold text-center text-sky-500">Ingrese su nueva contraseña</h1>
+            <img src="assets/logo.svg" alt="logo" className="h-[200px] md:h-[300px] lg:h-[400px] drop-shadow-lg"/>
                 <Input 
                     type='password'
                     placeholder="Nueva contraseña"
