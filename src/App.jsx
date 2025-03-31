@@ -18,14 +18,18 @@ function App() {
   const location = useLocation();
   const usuario = useSelector(state => state.usuario);
   const executed = useRef(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
       if (executed.current) return;
       executed.current = true;
       dispatch(validarSesion());
+
+      setLoading(false)
   }, [dispatch]);
 
   useEffect(() => {
+    if (loading) return;
     // Si el usuario no está validado, redirigir a /login o /register
     if (!usuario) {
         const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword", "/verificar"];
@@ -40,6 +44,15 @@ function App() {
         }
     }
 }, [usuario, navigate, location.pathname]);
+
+if (loading) {
+  return (
+  <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
+      <img src="/assets/LoadingGif.gif" alt="Cargando..." className="w-20 h-20 mx-auto" />
+      <p>Por favor, espera unos segundos.</p>
+  </div>
+  );
+}
 
   return (
     <div className="bg-fondoBody min-h-screen">
