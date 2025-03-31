@@ -77,8 +77,9 @@ const Home = () => {
 
     if (loading) {
         return (
-        <div className="flex flex-col items-center justify-center h-screen bg-fondoBody"> /
+        <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
             <h1 className="text-2xl font-bold">Cargando datos...</h1>
+            <p>Por favor, espera unos segundos.</p>
         </div>
         );
     }
