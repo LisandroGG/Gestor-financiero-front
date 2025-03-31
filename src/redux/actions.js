@@ -109,6 +109,9 @@ export const validarSesion = () => {
             });
         } catch (error) {
             console.error('Usuario desautorizado', error.message);
+            dispatch({
+                type: LOGOUT_USUARIO,
+            });
         }
     };
 };

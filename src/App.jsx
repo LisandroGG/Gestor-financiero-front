@@ -16,13 +16,12 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const usuario = useSelector(state => state.usuario);
-  const executed = useRef(false)
+  const executed = useRef(false);
 
   useEffect(() => {
-    // Validar sesión cuando la app se carga
-    if (executed.current) return;
-        executed.current = true;
-    dispatch(validarSesion());
+      if (executed.current) return;
+      executed.current = true;
+      dispatch(validarSesion());
   }, [dispatch]);
 
   useEffect(() => {
@@ -41,7 +40,6 @@ function App() {
         }
     }
 }, [usuario, navigate]);
-
 
   return (
     <div className="bg-fondoBody min-h-screen">
