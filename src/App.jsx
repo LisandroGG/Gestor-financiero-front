@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { validarSesion } from './redux/actions';
@@ -15,6 +15,7 @@ function App() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const usuario = useSelector(state => state.usuario);
   const executed = useRef(false);
 
@@ -27,19 +28,18 @@ function App() {
   useEffect(() => {
     // Si el usuario no está validado, redirigir a /login o /register
     if (!usuario) {
-        const path = window.location.pathname;
         const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword", "/verificar"];
 
-        if (!allowedRoutes.includes(path)) {
+        if (!allowedRoutes.includes(location.pathname)) {
             navigate("/login");
         }
     } else {
         // Si el usuario está logueado, redirigir a /
-        if (window.location.pathname === "/login" || window.location.pathname === "/register") {
+        if (location.pathname === "/login" || location.pathname === "/register") {
             navigate("/");
         }
     }
-}, [usuario, navigate]);
+}, [usuario, navigate, location.pathname]);
 
   return (
     <div className="bg-fondoBody min-h-screen">
