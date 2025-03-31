@@ -11,6 +11,7 @@ const VerificarCuenta = () => {
     const [message, setMessage] = useState("");
 
     const LOCAL = import.meta.env.VITE_LOCAL;
+    const DEPLOY = import.meta.env.VITE_DEPLOY;
 
     const executed = useRef(false)
 
@@ -19,7 +20,7 @@ const VerificarCuenta = () => {
         executed.current = true;
 
         if (token) {
-            axios.get(`${LOCAL}/usuarios/verificar?token=${token}`, { withCredentials: true })
+            axios.get(`${DEPLOY}/usuarios/verificar?token=${token}`, { withCredentials: true })
                 .then(() => {
                     setMessage("¡Cuenta verificada con éxito! Redirigiendo...");
                     setTimeout(() => {
@@ -41,7 +42,7 @@ const VerificarCuenta = () => {
                 navigate("/login");
             }, 3000);
         }
-    }, [token, navigate, LOCAL]);
+    }, [token, navigate, DEPLOY]);
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">

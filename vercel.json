@@ -1,5 +1,12 @@
 {
     "rewrites": [
-        { "source": "/:path*", "destination": "/index.html" }
+      {
+        "source": "/:path*",
+        "destination": "/index.html",
+        "missing": [
+          { "type": "file", "value": "public/:path*" },
+          { "type": "directory", "value": "public/:path*" }
+        ]
+      }
     ]
-}
+  }

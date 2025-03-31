@@ -17,13 +17,14 @@ import {
     } from './action-types'
 
 const LOCAL = import.meta.env.VITE_LOCAL;
+const DEPLOY = import.meta.env.VITE_DEPLOY;
 
 //USUARIOS
 
 export const registerUsuario = (userData) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${LOCAL}/usuarios/register`, userData, {
+            const { data } = await axios.post(`${DEPLOY}/usuarios/register`, userData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -47,7 +48,7 @@ export const registerUsuario = (userData) => {
 export const loginUsuario = (loginData) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${LOCAL}/usuarios/login`, loginData, {
+            const { data } = await axios.post(`${DEPLOY}/usuarios/login`, loginData, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true,
             });
@@ -76,7 +77,7 @@ export const loginUsuario = (loginData) => {
 export const logoutUsuario = () => {
     return async(dispatch) => {
         try {
-            await axios.post(`${LOCAL}/usuarios/logout`, {}, {
+            await axios.post(`${DEPLOY}/usuarios/logout`, {}, {
                 withCredentials: true,
             })
 
@@ -94,7 +95,7 @@ export const logoutUsuario = () => {
 export const validarSesion = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${LOCAL}/usuarios/validarSesion`, {
+            const { data } = await axios.get(`${DEPLOY}/usuarios/validarSesion`, {
                 withCredentials: true,
             });
 
@@ -115,7 +116,7 @@ export const validarSesion = () => {
 export const forgotPassword = (gmailUsuario) => {
     return async(dispatch) => {
         try {
-            const { data } = await axios.post(`${LOCAL}/usuarios/forgotPassword`, {
+            const { data } = await axios.post(`${DEPLOY}/usuarios/forgotPassword`, {
                 gmailUsuario
             });
 
@@ -135,7 +136,7 @@ export const forgotPassword = (gmailUsuario) => {
 export const changePassword = (token, nuevaContraseña) => {
     return async(dispatch) => {
         try {
-            const { data } = await axios.put(`${LOCAL}/usuarios/changePassword?token=${token}`, {
+            const { data } = await axios.put(`${DEPLOY}/usuarios/changePassword?token=${token}`, {
                 nuevaContraseña
             });
 
@@ -156,7 +157,7 @@ export const changePassword = (token, nuevaContraseña) => {
 export const sendVerification = (gmailUsuario) => {
     return async(dispatch) => {
         try {
-            const { data } = await axios.post(`${LOCAL}/usuarios/reverificar`, {
+            const { data } = await axios.post(`${DEPLOY}/usuarios/reverificar`, {
                 gmailUsuario
             })
 
@@ -179,7 +180,7 @@ export const sendVerification = (gmailUsuario) => {
 export const obtenerCategorias = (idUsuario) => {
     return async(dispatch) => {
         try {
-            const { data } = await axios.get(`${LOCAL}/categorias/obtener/${idUsuario}`, {
+            const { data } = await axios.get(`${DEPLOY}/categorias/obtener/${idUsuario}`, {
                 withCredentials: true,
             });
 
@@ -198,7 +199,7 @@ export const crearCategoria = (idUsuario, nuevaCategoria) => {
 
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(`${LOCAL}/categorias/crear`, {
+            const { data } = await axios.post(`${DEPLOY}/categorias/crear`, {
                 idUsuario,
                 nombreCategoria: nombreCategoriaNormalizado,
             }, {
@@ -222,7 +223,7 @@ export const crearCategoria = (idUsuario, nuevaCategoria) => {
 export const actualizarCategoria = (idUsuario, idCategoriaEditada, categoriaEditada) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.put(`${LOCAL}/categorias/actualizar/${idUsuario}/${idCategoriaEditada}`, {
+            const { data } = await axios.put(`${DEPLOY}/categorias/actualizar/${idUsuario}/${idCategoriaEditada}`, {
                 nombreCategoria: categoriaEditada.trim(),
             }, {
                 headers: { 'Content-Type': 'application/json' },
@@ -248,7 +249,7 @@ export const eliminarCategoria = (idUsuario, idCategoria) => {
 
     return async (dispatch) => {
         try {
-            const { data } = await axios.delete(`${LOCAL}/categorias/eliminar/${idUsuario}/${idCategoria}`, {
+            const { data } = await axios.delete(`${DEPLOY}/categorias/eliminar/${idUsuario}/${idCategoria}`, {
                 withCredentials: true,
             });
 
@@ -268,7 +269,7 @@ export const eliminarCategoria = (idUsuario, idCategoria) => {
 export const obtenerGastos = (idUsuario) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`${LOCAL}/gastos/obtener/${idUsuario}`, {
+            const { data } = await axios.get(`${DEPLOY}/gastos/obtener/${idUsuario}`, {
                 withCredentials: true,
             });
 
@@ -284,7 +285,7 @@ export const obtenerGastos = (idUsuario) => {
 
 export const crearGasto = (gasto) => async (dispatch) => {
     try {
-        const { data } = await axios.post(`${LOCAL}/gastos/crear`, gasto);
+        const { data } = await axios.post(`${DEPLOY}/gastos/crear`, gasto);
         dispatch({
             type: CREAR_GASTO,
             payload: data.gasto,
@@ -300,7 +301,7 @@ export const crearGasto = (gasto) => async (dispatch) => {
 export const actualizarGasto = ({ idUsuario, idCategoria, idGasto, cantidadGasto }) => async (dispatch) => {
     try {
         const { data } = await axios.put(
-            `${LOCAL}/gastos/actualizar/${idUsuario}/idCategoria/${idCategoria}/idGasto/${idGasto}`,
+            `${DEPLOY}/gastos/actualizar/${idUsuario}/idCategoria/${idCategoria}/idGasto/${idGasto}`,
             { cantidadGasto }
         );
         dispatch({
@@ -322,7 +323,7 @@ export const actualizarGasto = ({ idUsuario, idCategoria, idGasto, cantidadGasto
 
 export const eliminarGasto = (idUsuario, idGasto) => async (dispatch) => {
     try {
-        const { data } = await axios.delete(`${LOCAL}/gastos/eliminar/${idUsuario}/${idGasto}`);
+        const { data } = await axios.delete(`${DEPLOY}/gastos/eliminar/${idUsuario}/${idGasto}`);
         dispatch({
             type: ELIMINAR_GASTO,
             payload: idGasto,
