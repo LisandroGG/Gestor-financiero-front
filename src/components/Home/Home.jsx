@@ -76,7 +76,11 @@ const Home = () => {
     };
 
     if (loading) {
-        return <div>Cargando categorías...</div>;
+        return (
+        <div className="flex flex-col items-center justify-center h-screen bg-fondoBody"> /
+            <h1 className="text-2xl font-bold">Cargando datos...</h1>
+        </div>
+        );
     }
 
     return (
