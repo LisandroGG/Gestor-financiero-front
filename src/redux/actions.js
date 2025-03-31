@@ -108,6 +108,12 @@ export const validarSesion = () => {
                 },
             });
         } catch (error) {
+            if(error.response.status === '401'){
+                console.log("Sesión no válida o expiró.")
+            }else {
+                console.log("Error en la conexión:");
+            }
+
             dispatch({
                 type: LOGOUT_USUARIO,
             });
