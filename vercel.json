@@ -1,12 +1,6 @@
 {
-    "rewrites": [
-      {
-        "source": "/:path*",
-        "destination": "/index.html",
-        "missing": [
-          { "type": "file", "value": "public/:path*" },
-          { "type": "directory", "value": "public/:path*" }
-        ]
-      }
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/(.*)", "dest": "/index.html" }
     ]
   }
