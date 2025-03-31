@@ -26,6 +26,7 @@ const Input = ({ type, placeholder, value, onChange, className = "", ...props })
             type="button"
             onClick={toggleShowPassword}
             className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+            aria-label="boton mostrar/ocultar contraseña"
         >
             {showPassword ? (
             <svg
