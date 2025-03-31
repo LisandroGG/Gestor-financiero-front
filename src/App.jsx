@@ -7,8 +7,8 @@ import { validarSesion } from './redux/actions';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
-import ForgotPassword from './components/Password/forgotPassword';
-import ChangePassword from './components/Password/changePassword';
+import ForgotPassword from './components/Password/ForgotPassword';
+import ChangePassword from './components/Password/ChangePassword';
 import VerificarCuenta from './components/VerificarCuenta/VerificarCuenta'
 
 function App() {
