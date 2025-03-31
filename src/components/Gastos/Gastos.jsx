@@ -127,14 +127,14 @@ const Gastos = ({ gastos }) => {
                                 <tr key={gasto.idGasto}>
                                     <td className="border p-2 font-semibold max-w-32 break-words whitespace-normal">{gasto.categoria?.nombreCategoria}</td>
                                     <td className="border p-2 font-semibold break-words whitespace-normal">{gasto.cantidadGasto}</td>
-                                    <td className="border p-2 font-semibold text-center">{new Date(gasto.createdAt).toLocaleDateString('es-ES')}</td>
+                                    <td className="border p-2 font-semibold">{new Date(gasto.createdAt).toLocaleDateString('es-ES')}</td>
                                     <td className="border p-2 text-center hover:bg-gray-100">
                                         <button 
                                             onClick={() => handleEditarGasto(gasto)}>
                                             <IconEdit className= "text-sky-500 hover:text-sky-700 cursor-pointer" />
                                         </button>
                                     </td>
-                                    <td className="border p-2 hover:bg-gray-100">
+                                    <td className="border p-2 text-center hover:bg-gray-100">
                                         <button
                                             onClick={() => handleEliminarGasto(gasto.idGasto)}>
                                             <IconDelete classname='text-red-500 hover:text-red-700 cursor-pointer'/>
