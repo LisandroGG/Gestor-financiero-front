@@ -33,7 +33,6 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 usuario: action.payload,
-                
             };
 
         case LOGOUT_USUARIO:       
