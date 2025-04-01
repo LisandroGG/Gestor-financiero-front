@@ -28,23 +28,27 @@ function App() {
   useEffect(() => {
     // Si el usuario no está validado, redirigir a /login o /register
     if (!usuario) {
-        const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword", "/verificar"];
+        const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword", "/verificar", "/home"];
 
         if (!allowedRoutes.includes(location.pathname)) {
             navigate("/login");
         }
     } else {
-        // Si el usuario está logueado, redirigir a /
+        // Si el usuario está logueado, redirigir a /home
         if (location.pathname === "/login" || location.pathname === "/register") {
-            navigate("/");
+            navigate("/home");
         }
     }
 }, [usuario, navigate, location.pathname]);
 
   return (
     <div className="bg-fondoBody min-h-screen">
+        <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
+            <img src="/assets/LoadingGif.gif" alt="Cargando..." className="w-20 h-20 mx-auto" />
+            <p>Por favor, espera unos segundos.</p>
+        </div>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forgotPassword' element={<ForgotPassword />} /> 
