@@ -20,27 +20,26 @@ function App() {
   const executed = useRef(false);
 
   useEffect(() => {
-    const checkSession = async () => {
       if (executed.current) return;
       executed.current = true;
+      dispatch(validarSesion());
+  }, [dispatch]);
 
-      const sessionValid = await dispatch(validarSesion()); // Esperamos que validarSesion termine
-      // Si la sesión no es válida y el usuario no está en rutas permitidas, redirigir a /login
-      if (!sessionValid) {
+  useEffect(() => {
+    // Si el usuario no está validado, redirigir a /login o /register
+    if (!usuario) {
         const allowedRoutes = ["/login", "/register", "/changePassword", "/forgotPassword", "/verificar"];
+
         if (!allowedRoutes.includes(location.pathname)) {
-          navigate("/login");
+            navigate("/login");
         }
-      } else {
+    } else {
         // Si el usuario está logueado, redirigir a /
         if (location.pathname === "/login" || location.pathname === "/register") {
-          navigate("/");
+            navigate("/");
         }
-      }
-    };
-
-    checkSession();
-  }, [dispatch, usuario, navigate, location.pathname]);
+    }
+}, [usuario, navigate, location.pathname]);
 
   return (
     <div className="bg-fondoBody min-h-screen">
