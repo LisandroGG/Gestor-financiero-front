@@ -43,11 +43,11 @@ function App() {
 
   return (
     <div className="bg-fondoBody min-h-screen">
-        <div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
+      <Routes>
+        <Route path='/' element={<div className="flex flex-col items-center justify-center h-screen bg-fondoBody">
             <img src="/assets/LoadingGif.gif" alt="Cargando..." className="w-20 h-20 mx-auto" />
             <p>Por favor, espera unos segundos.</p>
-        </div>
-      <Routes>
+        </div>} />
         <Route path='/home' element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
