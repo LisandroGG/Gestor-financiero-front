@@ -99,7 +99,7 @@ export const validarSesion = () => {
                 withCredentials: true,
             });
 
-            return dispatch({
+            dispatch({
                 type: LOGIN_USUARIO,
                 payload: {
                     idUsuario: data.idUsuario,
@@ -107,10 +107,12 @@ export const validarSesion = () => {
                     gmailUsuario: data.gmailUsuario,
                 },
             });
+            return true
         } catch (error) {
             return dispatch({
                 type: LOGOUT_USUARIO,
             });
+            return false
         }
     };
 };
