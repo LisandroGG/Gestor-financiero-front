@@ -109,7 +109,7 @@ export const validarSesion = () => {
             });
             return true
         } catch (error) {
-            return dispatch({
+            dispatch({
                 type: LOGOUT_USUARIO,
             });
             return false
